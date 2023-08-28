@@ -28,15 +28,23 @@
           </span>
         </div>
         <div class="container">
-          <form action="#">
+          <form action="#" id="register-form">
             <div class="input-box">
               <input
                 type="text"
                 id="name"
                 class="form-input"
                 placeholder="First Name"
-                required
               />
+              <img
+                id="first-name-image-error"
+                class="error-img hide"
+                src="./images/icon-error.svg"
+                alt="Image Alert Error"
+              />
+              <small class="error-message hide" id="first-name-message-error">
+                First Name cannot be empty
+              </small>
             </div>
             <div class="input-box">
               <input
@@ -44,8 +52,16 @@
                 id="last-name"
                 class="form-input"
                 placeholder="Last Name"
-                required
               />
+              <img
+                id="last-name-image-error"
+                class="error-img hide"
+                src="./images/icon-error.svg"
+                alt="Image Alert Error"
+              />
+              <small class="error-message hide" id="last-name-message-error">
+                Last Name cannot be empty
+              </small>
             </div>
             <div class="input-box">
               <input
@@ -53,8 +69,16 @@
                 id="email"
                 class="form-input"
                 placeholder="Email Address"
-                required
               />
+              <img
+                class="error-img hide"
+                id="email-image-error"
+                src="./images/icon-error.svg"
+                alt="Image Alert Error"
+              />
+              <small class="error-message hide" id="email-message-error">
+                Looks like this is not an e-mail
+              </small>
             </div>
             <div class="input-box">
               <input
@@ -62,8 +86,16 @@
                 id="password"
                 class="form-input"
                 placeholder="Password"
-                required
               />
+              <img
+                class="error-img hide"
+                id="password-image-error"
+                src="./images/icon-error.svg"
+                alt="Image Alert Error"
+              />
+              <small class="error-message hide" id="password-message-error">
+                Password cannot be empty
+              </small>
             </div>
             <input
               type="submit"
