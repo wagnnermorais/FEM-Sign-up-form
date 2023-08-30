@@ -15,6 +15,7 @@ const passwordImageError = document.querySelector("#password-image-error");
 const passwordMessageError = document.querySelector("#password-message-error");
 const error = document.querySelectorAll("small");
 const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let isError = false;
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -24,21 +25,31 @@ form.addEventListener("submit", (event) => {
 function validInput(message, image) {
   message.classList.add("hide");
   image.classList.add("hide");
+  isError = false;
 }
 
 function invalidInput(input, image, message) {
   input.classList.remove("hide");
   image.classList.remove("hide");
   input.innerText = message;
+  isError = true;
 }
 
 function validateForm() {
   firstName.value.trim() === ""
-    ? invalidInput(firstNameMessageError, firstNameImageError, "First Name cannot be empty")
+    ? invalidInput(
+        firstNameMessageError,
+        firstNameImageError,
+        "First Name cannot be empty"
+      )
     : validInput(firstNameMessageError, firstNameImageError);
 
   lastName.value.trim() === ""
-    ? invalidInput(lastNameMessageError, lastNameImageError, "Last Name cannot be empty")
+    ? invalidInput(
+        lastNameMessageError,
+        lastNameImageError,
+        "Last Name cannot be empty"
+      )
     : validInput(lastNameMessageError, lastNameImageError);
 
   email.value.trim() === ""
@@ -46,24 +57,46 @@ function validateForm() {
     : validInput(emailMessageError, emailImageError);
 
   password.value.trim() === ""
-    ? invalidInput(passwordMessageError, passwordImageError, "Password cannot be empty")
+    ? invalidInput(
+        passwordMessageError,
+        passwordImageError,
+        "Password cannot be empty"
+      )
     : validInput(passwordMessageError, passwordImageError);
 
   if (firstName.value.length > 1 && firstName.value.length < 3) {
-    invalidInput(firstNameMessageError, firstNameImageError, "First Name must have at least 3 characters");
+    invalidInput(
+      firstNameMessageError,
+      firstNameImageError,
+      "First Name must have at least 3 characters"
+    );
   }
 
   if (lastName.value.length > 1 && lastName.value.length < 3) {
-    invalidInput(lastNameMessageError, lastNameImageError, "Last Name must have at least 3 characters");
+    invalidInput(
+      lastNameMessageError,
+      lastNameImageError,
+      "Last Name must have at least 3 characters"
+    );
   }
 
   if (email.value.length > 1 && !email.value.match(pattern)) {
     document.getElementById("email").placeholder = "email@example.com";
-    invalidInput(emailMessageError, emailImageError, "Looks like this is not an e-mail");
+    invalidInput(
+      emailMessageError,
+      emailImageError,
+      "Looks like this is not an e-mail"
+    );
     email.value = "";
   }
 
   if (password.value.length > 1 && password.value.length < 5) {
-    invalidInput(passwordMessageError, passwordImageError, "Password must have at least 4 characters");
+    invalidInput(
+      passwordMessageError,
+      passwordImageError,
+      "Password must have at least 4 characters"
+    );
   }
+
+  if (!isError) return alert("Submission successful");
 }
